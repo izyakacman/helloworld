@@ -2,9 +2,12 @@
 
 #include <iostream>
 
+using namespace std;
+
 int main (int, char **)
 {
-    std::cout << "Version: " << version() << std::endl;
+    cout << "build " << version() << endl;
+    cout << "Hello, World" << endl;
 
     return 0;
 }
