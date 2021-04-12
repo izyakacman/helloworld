@@ -1,4 +1,4 @@
-/*
+
 #define BOOST_TEST_MODULE test_version
 
 #include "lib.h"
@@ -13,4 +13,3 @@ BOOST_AUTO_TEST_CASE(test_valid_version)
 }
 
 }
-*/
