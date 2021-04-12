@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      -ip_filter
 
 jobs:
   build:
