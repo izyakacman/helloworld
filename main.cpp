@@ -90,7 +90,7 @@ void Filter(const T& ipPool, int nType)
 template<typename T>
 void IpSort(T& ipPool)
 {
-	sort(ipPool.begin(), ipPool.end(), [](const typename T::value_type& v1, const T::value_type& v2)
+	sort(ipPool.begin(), ipPool.end(), [](const typename T::value_type& v1, const typename T::value_type& v2)
 		{
 			string s1, s2;
 
