@@ -75,7 +75,7 @@ void IpPoolPrint(const T& ipPool)
 template<typename T>
 void Filter(const T& ipPool, int nType)
 {
-	for_each(ipPool.cbegin(), ipPool.cend(), [nType](const T::value_type& v) {
+	for_each(ipPool.cbegin(), ipPool.cend(), [nType](const typename T::value_type& v) {
 
 		if ((nType == 0 && v.at(0) == "1") ||
 			(nType == 1 && v.at(0) == "46" && v.at(1) == "70") ||
@@ -90,7 +90,7 @@ void Filter(const T& ipPool, int nType)
 template<typename T>
 void IpSort(T& ipPool)
 {
-	sort(ipPool.begin(), ipPool.end(), [](const T::value_type& v1, const T::value_type& v2)
+	sort(ipPool.begin(), ipPool.end(), [](const typename T::value_type& v1, const typename T::value_type& v2)
 		{
 			string s1, s2;
 
@@ -111,7 +111,7 @@ int main (int, char **)
 {
 	try
 	{
-		// Файл исходных данных
+		// Г”Г Г©Г« ГЁГ±ГµГ®Г¤Г­Г»Гµ Г¤Г Г­Г­Г»Гµ
 
 		ifstream fileInputStream("ip_filter.tsv");
 
