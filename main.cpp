@@ -111,7 +111,11 @@ int main (int, char **)
 {
 	try
 	{
-		// Ôàéë èñõîäíûõ äàííûõ
+		vector<vector<string>> ip_pool;
+
+//#define DATA_FROM_FILE
+#ifdef DATA_FROM_FILE
+		// Input data
 
 		ifstream fileInputStream("ip_filter.tsv");
 
@@ -121,9 +125,10 @@ int main (int, char **)
 			throw 0;
 		}
 
-		vector<vector<string>> ip_pool;
-
 		for (string line; getline(fileInputStream, line);)
+#else
+		for (string line; getline(cin, line);)
+#endif
 		{
 			vector<string> v = split(line, '\t');
 			ip_pool.push_back(split(v.at(0), '.'));
