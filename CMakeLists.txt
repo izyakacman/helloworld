@@ -1,26 +1,26 @@
 
 cmake_minimum_required(VERSION 3.8)
 
-project (helloworld_cli VERSION 0.0.$ENV{GITHUB_RUN_NUMBER})
+project (ip_filter VERSION 0.0.$ENV{GITHUB_RUN_NUMBER})
 
-add_executable(helloworld_cli main.cpp)
+add_executable(ip_filter main.cpp)
 
-set_target_properties(helloworld_cli  PROPERTIES
+set_target_properties(ip_filter  PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
 )
 
 if (MSVC)
-    target_compile_options(helloworld_cli PRIVATE
+    target_compile_options(ip_filter PRIVATE
         /W4
     )
 else ()
-    target_compile_options(helloworld_cli PRIVATE
+    target_compile_options(ip_filter PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
 endif()
 
-install(TARGETS helloworld_cli RUNTIME DESTINATION bin)
+install(TARGETS ip_filter RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
