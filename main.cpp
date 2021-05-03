@@ -1,118 +1,19 @@
-#include <cassert>
-#include <cstdlib>
 #include <iostream>
-#include <string>
 #include <vector>
-#include <algorithm>
 #include <fstream>
-#include <iterator>
+
+#include "split.h"
+#include "ip_filter.h"
+#include "ip_print.h"
+#include "ip_sort.h"
 
 using namespace std;
 
-// ("",  '.') -> [""]
-// ("11", '.') -> ["11"]
-// ("..", '.') -> ["", "", ""]
-// ("11.", '.') -> ["11", ""]
-// (".11", '.') -> ["", "11"]
-// ("11.22", '.') -> ["11", "22"]
-vector<string> split(const string& str, char d)
-{
-	vector<string> r;
-
-	string::size_type start = 0;
-	string::size_type stop = str.find_first_of(d);
-	while (stop != string::npos)
-	{
-		r.push_back(str.substr(start, stop - start));
-
-		start = stop + 1;
-		stop = str.find_first_of(d, start);
-	}
-
-	r.push_back(str.substr(start));
-
-	return r;
-}
-
-/**
-	Print IP address
-*/
-template<typename T>
-void PrintIp(const T& ipAddress)
-{
-	for (auto ip_part = ipAddress.cbegin(); ip_part != ipAddress.cend(); ++ip_part)
-	{
-		if (ip_part != ipAddress.cbegin())
-		{
-			cout << ".";
-
-		}
-		cout << *ip_part;
-	}
-
-	cout << endl;
-}
-
-/**
-	Print IP Pool
-*/
-template<typename T>
-void IpPoolPrint(const T& ipPool)
-{
-	for (const auto& ip : ipPool)
-	{
-		PrintIp(ip);
-	}
-}
-
-/**
-	Print filtered ip addresses
-
-	nType = 0 - first number == 1
-	nType = 1 - first number == 46 and second number == 70
-	nType = 1 - any number == 46
-*/
-template<typename T>
-void Filter(const T& ipPool, int nType)
-{
-	for_each(ipPool.cbegin(), ipPool.cend(), [nType](const typename T::value_type& v) {
-	//for_each(ipPool.cbegin(), ipPool.cend(), [nType](decltype(*ipPool.cbegin()) v) {
-
-		if ((nType == 0 && v.at(0) == "1") ||
-			(nType == 1 && v.at(0) == "46" && v.at(1) == "70") ||
-			(nType == 2 && find(begin(v), end(v), "46") != end(v)))
-			PrintIp(v);
-		});
-}
-
-/**
-	Reverse lexicographically sort
-*/
-template<typename T>
-void IpSort(T& ipPool)
-{
-	sort(ipPool.begin(), ipPool.end(), [](const typename T::value_type& v1, const typename T::value_type& v2)
-		{
-			string s1, s2;
-
-			for (int i = 0; i < 2; ++i)
-			{
-				for (const auto& s : ((i) ? v1 : v2))
-				{
-					((i) ? s1 : s2).append(3 - s.size(), '0');
-					((i) ? s1 : s2) += s;
-				}
-			}
-
-			return stoull(s1) > stoull(s2);
-		});
-}
-
-int main (int, char **)
+int main ()
 {
 	try
 	{
-		vector<vector<string>> ip_pool;
+		vector<vector<int>> ip_pool;
 
 //#define DATA_FROM_FILE
 #ifdef DATA_FROM_FILE
@@ -131,8 +32,12 @@ int main (int, char **)
 		for (string line; getline(cin, line);)
 #endif
 		{
-			vector<string> v = split(line, '\t');
-			ip_pool.push_back(split(v.at(0), '.'));
+			vector<string> v = Split(line, '\t');
+			vector<string> ip = Split(v.at(0), '.');
+			vector<int> ip_int;
+			for (const auto& s : ip) ip_int.push_back(stoi(s));
+
+			ip_pool.push_back(ip_int);
 		}
 
 		// Reverse lexicographically sort
@@ -147,7 +52,7 @@ int main (int, char **)
 
 		for (int i = 0; i < 3; ++i)
 			Filter(ip_pool, i);
-
+			
 		// 222.173.235.246
 		// 222.130.177.64
 		// 222.82.198.61
@@ -210,8 +115,6 @@ int main (int, char **)
 		// 46.49.43.85
 		// 39.46.86.85
 		// 5.189.203.46
-
-
 
 	}
 	catch (const exception& e)

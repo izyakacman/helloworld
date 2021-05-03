@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.8)
 
 project (ip_filter VERSION 0.0.$ENV{GITHUB_RUN_NUMBER})
 
-add_executable(ip_filter main.cpp)
+add_executable(ip_filter "main.cpp" "split.cpp" "split.h" "ip_print.h" "ip_print.cpp" "ip_filter.h" "ip_filter.cpp" "ip_sort.h" "ip_sort.cpp")
 
 set_target_properties(ip_filter  PROPERTIES
     CXX_STANDARD 14
@@ -12,7 +12,7 @@ set_target_properties(ip_filter  PROPERTIES
 
 if (MSVC)
     target_compile_options(ip_filter PRIVATE
-        /W4
+        /W3
     )
 else ()
     target_compile_options(ip_filter PRIVATE
