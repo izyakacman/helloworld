@@ -76,6 +76,7 @@ template<typename T>
 void Filter(const T& ipPool, int nType)
 {
 	for_each(ipPool.cbegin(), ipPool.cend(), [nType](const typename T::value_type& v) {
+	//for_each(ipPool.cbegin(), ipPool.cend(), [nType](decltype(*ipPool.cbegin()) v) {
 
 		if ((nType == 0 && v.at(0) == "1") ||
 			(nType == 1 && v.at(0) == "46" && v.at(1) == "70") ||

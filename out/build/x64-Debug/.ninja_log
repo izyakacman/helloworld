@@ -1,12 +1,5 @@
 # ninja log v5
-1	1134	6403071005940362	CMakeFiles/helloworld_cli.dir/main.cpp.obj	1ec4066bc2dbe647
-632	728	6399544329822836	helloworld.lib	ff6b46a636e6d55c
-3	632	6399544328875380	CMakeFiles/helloworld.dir/lib.cpp.obj	5fbf0eeda109bf38
-1135	2840	6403071010159050	helloworld_cli.exe	bb6e70e1cd92e804
+4	664	6405655574673063	CMakeFiles/helloworld_cli.dir/main.cpp.obj	1ec4066bc2dbe647
+665	1525	6405655576687664	helloworld_cli.exe	bb6e70e1cd92e804
 0	9	0	clean	9992afb1f91dc381
-0	1316	6405625068306531	CMakeFiles/helloworld_cli.dir/main.cpp.obj	1ec4066bc2dbe647
-5	2110	6405625075936128	CMakeFiles/test_version.dir/test_version.cpp.obj	5d358bb24ebe19a
-1317	3094	6405625077262588	helloworld_cli.exe	bb6e70e1cd92e804
-2116	3512	6405625082339022	test_version.exe	5d971c0852bc5538
-7	1022	6405626178412850	CMakeFiles/helloworld_cli.dir/main.cpp.obj	1ec4066bc2dbe647
-1023	2088	6405626181215405	helloworld_cli.exe	bb6e70e1cd92e804
+1	1174	6417388430892500	helloworld_cli.exe	2b516204fe6963dd
