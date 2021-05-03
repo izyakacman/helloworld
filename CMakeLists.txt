@@ -1,6 +1,8 @@
 
 cmake_minimum_required(VERSION 3.2)
 
+project (helloworld_cli  VERSION 0.0.$ENV{GITHUB_RUN_NUMBER})
+
 add_executable(helloworld_cli main.cpp)
 
 set_target_properties(helloworld_cli  PROPERTIES
